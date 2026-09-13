@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linktree Clone | @FullStack-Force</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Background pattern -->
+    <div class="background-pattern"></div>
+
+    <div class="app-container">
+        <!-- Top Navigation -->
+        <header class="top-nav">
+            <div style="flex-grow: 1;"></div> <!-- Espaçador para empurrar o share para a direita -->
+            <button class="icon-button" aria-label="Share">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="18" cy="5" r="3"></circle>
+                    <circle cx="6" cy="12" r="3"></circle>
+                    <circle cx="18" cy="19" r="3"></circle>
+                    <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                    <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                </svg>
+            </button>
+        </header>
+
+        <main class="main-content">
+            <!-- Profile Info -->
+            <div class="profile-header">
+                <div class="avatar-wrapper">
+                    <!-- Tech Stack Ring Decoration -->
+                    <div class="tech-ring"></div>
+                    <img id="profile-avatar" src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix" alt="Profile" class="avatar-image">
+                </div>
+                <h1 id="profile-title" class="profile-title">@FullStack-Force</h1>
+                <p id="profile-bio" class="profile-bio">
+                    Equipe dedicada e criativa, criando<br>soluções inovadoras que fazem a diferença.
+                </p>
+            </div>
+
+            <!-- Links Container -->
+            <div id="links-container" class="links-container">
+                <!-- Links rendered via JS -->
+            </div>
+        </main>
+
+        <!-- Call To Action (Bottom Banner) -->
+        <div class="promo-banner">
+            <div class="promo-content">
+                <span>Vamos transformar a sua empresa juntos?</span>
+            </div>
+        </div>
+
+        <!-- Portfolio Button (Anchor Link) -->
+        <div class="portfolio-section">
+            <a href="#projetos-ancora" class="portfolio-btn">
+                Portfólio
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <polyline points="19 12 12 19 5 12"></polyline>
+                </svg>
+            </a>
+        </div>
+
+        <!-- Projects Section (Anchor Target) -->
+        <div id="projetos-ancora" class="projects-wrapper">
+            <h2 class="section-title">Meus Projetos</h2>
+            <div id="projects-container" class="projects-container">
+                <!-- Projects rendered via JS -->
+            </div>
+        </div>
+
+        <!-- Footer Links -->
+        <footer class="footer">
+            <a href="#">Cookie Preferences</a>
+            <a href="#">Report</a>
+            <a href="#">Privacy</a>
+            <a href="#">Explore</a>
+            <a href="#">About this account</a>
+            <a href="#">More from Linktree</a>
+        </footer>
+    </div>
+
+    <!-- Configuration and Logic -->
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,403 @@
+/* Base Variables & Reset */
+:root {
+    --bg-color: #09090b; /* Dark Zinc */
+    --text-primary: #fafafa;
+    --text-secondary: #a1a1aa;
+    --card-bg: #18181b; 
+    --card-hover: #27272a;
+    --card-border: rgba(255, 255, 255, 0.1);
+    --font-sans: 'Inter', sans-serif;
+    --font-serif: Georgia, 'Times New Roman', Times, serif;
+    --transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-sans);
+    color: var(--text-primary);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    background-color: var(--bg-color);
+    overflow-x: hidden;
+}
+
+/* Background Pattern 
+   Creates a dark, smooth blob-like texture to mimic the screenshot
+*/
+.background-pattern {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    background: 
+        radial-gradient(circle at 15% 50%, rgba(30, 30, 30, 0.4) 0%, transparent 50%),
+        radial-gradient(circle at 85% 30%, rgba(40, 40, 40, 0.5) 0%, transparent 50%),
+        radial-gradient(circle at 50% 80%, rgba(20, 20, 20, 0.6) 0%, transparent 50%);
+    background-size: 150% 150%;
+    animation: drift 20s ease-in-out infinite alternate;
+}
+
+@keyframes drift {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 100% 100%; }
+}
+
+/* Container */
+.app-container {
+    width: 100%;
+    max-width: 680px;
+    padding: 24px 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Top Navigation */
+.top-nav {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0 24px 0;
+}
+
+.icon-button {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    cursor: pointer;
+    transition: var(--transition);
+    backdrop-filter: blur(10px);
+}
+
+.icon-button:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: scale(1.05);
+}
+
+/* Main Content */
+.main-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+    flex-grow: 1;
+}
+
+/* Profile Header */
+.profile-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 12px;
+}
+
+.avatar-wrapper {
+    position: relative;
+    width: 128px;
+    height: 128px;
+    margin-bottom: 8px;
+    border-radius: 50%;
+    padding: 4px; /* Space for the tech ring */
+    background: linear-gradient(45deg, #1e1e1e, #3a3a3a);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+}
+
+.avatar-image {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    background: #fff; /* In case of transparent SVGs */
+}
+
+/* Just a CSS trick to simulate the developer icons ring */
+.tech-ring {
+    position: absolute;
+    top: -2px; left: -2px; right: -2px; bottom: -2px;
+    border-radius: 50%;
+    border: 1px dashed rgba(255,255,255,0.2);
+    animation: rotate 20s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.profile-title {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.profile-bio {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.4;
+    max-width: 400px;
+    font-weight: 500;
+}
+
+/* Links Container */
+.links-container {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 40px;
+}
+
+/* Link Cards */
+.link-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--card-bg);
+    padding: 0; /* Removido para usar 90% exatos no ícone */
+    border-radius: 16px;
+    border: 1px solid var(--card-border);
+    text-decoration: none;
+    color: var(--text-primary);
+    transition: var(--transition);
+    position: relative;
+    aspect-ratio: 1 / 1;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    overflow: hidden;
+}
+
+.link-card:hover {
+    transform: scale(1.02);
+    background-color: var(--card-hover);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.6);
+}
+
+.link-icon {
+    width: 90%;
+    height: 90%;
+    border-radius: 12px; /* Deixa a imagem quadrada com bordas suaves */
+    object-fit: cover; /* Impede que a imagem fique distorcida */
+    background-color: #27272a;
+    flex-shrink: 0;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    z-index: 1;
+}
+
+.link-title {
+    position: absolute;
+    bottom: 12%; /* Coloca o texto na parte de baixo da imagem */
+    left: 0;
+    right: 0;
+    margin: 0 auto; /* Centraliza elementos absolutos com fit-content */
+    width: fit-content;
+    background-color: rgba(0, 0, 0, 0.65); /* Fundo escuro semitransparente */
+    backdrop-filter: blur(4px); /* Efeito glass */
+    padding: 6px 18px;
+    border-radius: 20px; /* Formato de pílula arredondada */
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.05rem; /* Um pouco menor para caber bem no botão */
+    color: #fff;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.8); /* Sombra mais sutil já que agora tem fundo */
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* Portfolio Button */
+.portfolio-section {
+    width: 100%;
+    margin-bottom: 24px;
+}
+
+.portfolio-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 18px 24px;
+    background-color: #fafafa;
+    color: #09090b;
+    text-decoration: none;
+    border-radius: 16px;
+    font-weight: 700;
+    font-size: 1.15rem;
+    transition: var(--transition);
+    box-shadow: 0 4px 20px rgba(255,255,255,0.1);
+    gap: 12px;
+    position: relative;
+}
+
+.portfolio-btn:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 8px 30px rgba(255,255,255,0.2);
+    background-color: #ffffff;
+}
+
+/* Projects Section */
+.projects-wrapper {
+    width: 100%;
+    margin-top: 0;
+    margin-bottom: 32px;
+    z-index: 1;
+    /* Animação de reveal */
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.projects-wrapper.show-projects {
+    opacity: 1;
+    max-height: 1500px; /* Altura suficiente para mostrar os cards */
+    margin-top: 16px;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: var(--text-primary);
+}
+
+.projects-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.project-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--card-bg);
+    padding: 20px 24px;
+    border-radius: 14px;
+    border: 1px solid var(--card-border);
+    text-decoration: none;
+    color: var(--text-primary);
+    transition: var(--transition);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.project-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.project-title {
+    font-weight: 600;
+    font-size: 1.05rem;
+}
+
+.project-desc {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.4;
+}
+
+.project-card:hover {
+    transform: translateY(-2px);
+    background-color: var(--card-hover);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    border-color: rgba(255,255,255,0.2);
+}
+
+/* Promo Banner Mock */
+.promo-banner {
+    background: linear-gradient(90deg, #ffffff, #f0f0f0);
+    color: #000;
+    padding: 12px 24px;
+    border-radius: 100px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 24px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(255,255,255,0.1);
+    transition: var(--transition);
+}
+
+.promo-banner:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255,255,255,0.15);
+}
+
+/* Footer */
+.footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px 12px;
+    padding: 16px;
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.4);
+    text-align: center;
+}
+
+.footer a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.footer a:hover {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: underline;
+}
+
+/* Partículas de "Dev" (Faíscas) */
+.spark {
+    position: fixed;
+    bottom: -10px;
+    background-color: rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0; /* Fica acima do gradiente, mas abaixo dos cards */
+    animation: floatUp linear infinite;
+    box-shadow: 0 0 6px 1px rgba(255,255,255,0.3);
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    80% {
+        opacity: 0.5;
+    }
+    100% {
+        transform: translateY(-110vh) scale(0.3);
+        opacity: 0;
+    }
+}
